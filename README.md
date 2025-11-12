@@ -24,6 +24,6 @@ This game takes FNF: Psych Engine charts, instrumental channels, opponent & play
 * Custom miss sounds
 
 # What's next?
-I dunno.
+I dunno. Might add 6k support idk.
 
 
