@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGmania</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="game-container">
+    <!-- Settings Panel -->
+    <div id="settings-panel" class="panel">
+      <h2>Settings</h2>
+      <button id="close-settings">×</button>
+      
+      <div class="setting-group">
+        <h3>Keybinds (Player Side)</h3>
+        <div class="keybind-row">
+          <label>Left:</label>
+          <input type="text" id="key-left" maxlength="1" value="D">
+        </div>
+        <div class="keybind-row">
+          <label>Down:</label>
+          <input type="text" id="key-down" maxlength="1" value="F">
+        </div>
+        <div class="keybind-row">
+          <label>Up:</label>
+          <input type="text" id="key-up" maxlength="1" value="J">
+        </div>
+        <div class="keybind-row">
+          <label>Right:</label>
+          <input type="text" id="key-right" maxlength="1" value="K">
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h3>Note Colors</h3>
+        <div class="color-row">
+          <label>Left:</label>
+          <input type="color" id="color-left" value="#c24b99">
+        </div>
+        <div class="color-row">
+          <label>Down:</label>
+          <input type="color" id="color-down" value="#00ffff">
+        </div>
+        <div class="color-row">
+          <label>Up:</label>
+          <input type="color" id="color-up" value="#12fa05">
+        </div>
+        <div class="color-row">
+          <label>Right:</label>
+          <input type="color" id="color-right" value="#f9393f">
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h3>Audio Levels</h3>
+        <div class="volume-row">
+          <label>Inst Volume:</label>
+          <input type="range" id="volume-inst" min="0" max="100" value="70">
+          <span id="volume-inst-val">70%</span>
+        </div>
+        <div class="volume-row">
+          <label>Opponent Vocals:</label>
+          <input type="range" id="volume-opponent" min="0" max="100" value="50">
+          <span id="volume-opponent-val">50%</span>
+        </div>
+        <div class="volume-row">
+          <label>Player Vocals:</label>
+          <input type="range" id="volume-player" min="0" max="100" value="50">
+          <span id="volume-player-val">50%</span>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h3>Background</h3>
+        <select id="background-select">
+          <option value="gradient1">Purple Gradient</option>
+          <option value="gradient2">Blue Gradient</option>
+          <option value="gradient3">Red Gradient</option>
+          <option value="gradient4">Green Gradient</option>
+          <option value="custom">Custom Image</option>
+        </select>
+        <input type="file" id="bg-upload" accept="image/*" style="display:none;">
+      </div>
+
+      <div class="setting-group">
+        <h3>Scroll Speed</h3>
+        <input type="range" id="scroll-speed" min="0.5" max="3" step="0.1" value="1">
+        <span id="scroll-speed-val">1.0x</span>
+      </div>
+
+      <div class="setting-group">
+        <h3>Swap Sides</h3>
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="swap-sides">
+          <span>Swap opponent and player notes</span>
+        </label>
+      </div>
+
+      <div class="setting-group">
+        <h3>Bot Play</h3>
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="bot-play">
+          <span>Enable auto-play (bot plays for you)</span>
+        </label>
+      </div>
+
+      <div class="setting-group">
+        <h3>Ghost Tapping</h3>
+        <label style="display: flex; align-items: center; gap: 10px;">
+          <input type="checkbox" id="ghost-tapping" checked>
+          <span>Allow pressing keys without penalty when no notes are present</span>
+        </label>
+      </div>
+
+      <div class="setting-group">
+        <h3>Note Speed Multiplier</h3>
+        <input type="range" id="note-speed" min="0.5" max="3.0" step="0.1" value="1.0">
+        <span id="note-speed-val">1.0x</span>
+      </div>
+
+      <div class="setting-group">
+        <h3>Custom Countdown Sounds</h3>
+        <div class="import-group">
+          <label>3 Count:</label>
+          <input type="file" id="countdown-three" accept="audio/*">
+        </div>
+        <div class="import-group">
+          <label>2 Count:</label>
+          <input type="file" id="countdown-two" accept="audio/*">
+        </div>
+        <div class="import-group">
+          <label>1 Count:</label>
+          <input type="file" id="countdown-one" accept="audio/*">
+        </div>
+        <div class="import-group">
+          <label>GO Count:</label>
+          <input type="file" id="countdown-go" accept="audio/*">
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h3>Custom Miss Sounds</h3>
+        <input type="file" id="miss-sounds" accept="audio/*" multiple>
+        <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">Select multiple files for variety</p>
+      </div>
+    </div>
+
+    <!-- Chart Import Panel -->
+    <div id="import-panel" class="panel">
+      <h2>Import Custom Chart</h2>
+      <button id="close-import">×</button>
+      
+      <div class="import-group">
+        <label>Chart JSON:</label>
+        <input type="file" id="chart-file" accept=".json">
+      </div>
+      <div class="import-group">
+        <label>Inst Audio:</label>
+        <input type="file" id="inst-file" accept="audio/*">
+      </div>
+      <div class="import-group">
+        <label>Opponent Vocals:</label>
+        <input type="file" id="opponent-vocals-file" accept="audio/*">
+      </div>
+      <div class="import-group">
+        <label>Player Vocals:</label>
+        <input type="file" id="player-vocals-file" accept="audio/*">
+      </div>
+      <div class="import-group">
+        <label>Background Image (Optional):</label>
+        <input type="file" id="bg-image-file" accept="image/*">
+      </div>
+      <div class="import-group">
+        <label>Background Video (Optional):</label>
+        <input type="file" id="bg-video-file" accept="video/*">
+        <p style="font-size: 0.8em; opacity: 0.7; margin-top: 5px;">Video audio will be muted</p>
+      </div>
+      <button id="load-custom-chart">Load Chart</button>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu">
+      <h1>rhythm game ig</h1>
+      <div class="tab-buttons">
+        <button id="base-songs-tab" class="tab-button active">Base Songs</button>
+        <button id="extra-songs-tab" class="tab-button">EXTRA Charts</button>
+      </div>
+      <div id="song-list"></div>
+      <div class="menu-buttons">
+        <button id="settings-btn">Settings</button>
+        <button id="import-btn">Import Chart</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" style="display:none;">
+      <video id="background-video" style="display:none;"></video>
+      <img id="background-image" style="display:none;" alt="Background">
+      
+      <div id="game-ui">
+        <div id="score-display">Score: <span id="score">0</span></div>
+        <div id="combo-display">Combo: <span id="combo">0</span></div>
+        <div id="accuracy-display">Accuracy: <span id="accuracy">100.00%</span></div>
+        <div id="miss-display">Misses: <span id="misses">0</span></div>
+      </div>
+      
+      <div id="countdown-display"></div>
+      <div id="skip-intro-prompt" style="display:none;">Press E to skip to notes</div>
+      
+      <canvas id="game-canvas"></canvas>
+      
+      <div id="game-controls">
+        <button id="pause-btn">Pause</button>
+        <button id="quit-btn">Quit</button>
+      </div>
+    </div>
+
+    <!-- Pause Menu -->
+    <div id="pause-menu" style="display:none;">
+      <h2>Paused</h2>
+      <button id="resume-btn">Resume</button>
+      <button id="restart-btn">Restart</button>
+      <button id="menu-btn">Main Menu</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
